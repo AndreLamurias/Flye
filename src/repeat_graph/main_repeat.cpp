@@ -218,7 +218,7 @@ int repeat_main(int argc, char** argv)
 
 	//dump graph before first repeat resolution iteration
 	repResolver.findRepeats();
-	outGen.outputDot(proc.getEdgesPaths(), outFolder + "/graph_before_rr.gv");
+	//outGen.outputDot(proc.getEdgesPaths(), outFolder + "/graph_before_rr.gv");
 	//outGen.outputGfa(proc.getEdgesPaths(), outFolder + "/graph_before_rr.gfa");
 	outGen.outputFasta(proc.getEdgesPaths(), outFolder + "/graph_before_rr.fasta");
 
@@ -273,7 +273,7 @@ int repeat_main(int argc, char** argv)
 	repResolver.finalizeGraph();
 	//rg.validateGraph();
 
-	outGen.outputDot(proc.getEdgesPaths(), outFolder + "/graph_after_rr.gv");
+	//outGen.outputDot(proc.getEdgesPaths(), outFolder + "/graph_after_rr.gv");
 	rg.storeGraph(outFolder + "/repeat_graph_dump");
 	aligner.storeAlignments(outFolder + "/read_alignment_dump");
 	SequenceContainer::writeFasta(edgeSequences.iterSeqs(), 
