@@ -220,12 +220,13 @@ int repeat_main(int argc, char** argv)
 	Logger::get().info() << "Simplifying the graph";
 
 	multInf.removeUnsupportedEdges(/*only tips*/ true);
+	multInf.removeUnsupportedConnections();
 	//rg.validateGraph();
 	
 	RepeatResolver repResolver(rg, seqAssembly, seqReads, aligner, multInf);
 	HaplotypeResolver hapResolver(rg, aligner, seqAssembly, seqReads);
 	GraphProcessor proc(rg, seqAssembly);
-	OutputGenerator outGen(rg);
+	OutputGenerator outGen(rg, aligner);
 
 	//dump graph before first repeat resolution iteration
 	repResolver.findRepeats();
@@ -243,7 +244,6 @@ int repeat_main(int argc, char** argv)
 		Logger::get().debug() << "[SIMPL] == Iteration " << iterNum << " ==";
 
 		actions += multInf.splitNodes();
-		//actions += multInf.removeUnsupportedConnections();
 		if (isMeta) 
 		{
 			actions += multInf.disconnectMinorPaths();
